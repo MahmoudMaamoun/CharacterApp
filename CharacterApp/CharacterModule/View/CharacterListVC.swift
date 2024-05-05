@@ -30,7 +30,7 @@ class CharacterListVC: UIViewController,CharacterViewProtocol {
         tbView.dataSource = self
         tbView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.characterCellID)
         tbView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.filterCharListID)
-        
+        tbView.separatorStyle = .none
         view.addSubview(tbView)
         
         tbView.translatesAutoresizingMaskIntoConstraints = false
@@ -104,5 +104,11 @@ extension CharacterListVC : UITableViewDataSource {
 }
 
 extension CharacterListVC : UITableViewDelegate {
-    
+  
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 60
+        }
+        return 136
+    }
 }

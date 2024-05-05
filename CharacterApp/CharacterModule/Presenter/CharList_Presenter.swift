@@ -18,7 +18,7 @@ class CharList_Presenter : CharacterPresenterProtocol , CharacterInteractorOutpu
         return charList.count
     }
     
-    init(view: CharacterViewProtocol, interactor: CharacterInteractorInputProtocol, router: RouterProtocol) {
+    init(view: CharacterViewProtocol?, interactor: CharacterInteractorInputProtocol, router: RouterProtocol) {
         self.view = view
         self.interactor = interactor
         self.router = router

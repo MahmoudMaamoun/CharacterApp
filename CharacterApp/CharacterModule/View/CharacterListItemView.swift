@@ -11,7 +11,11 @@ struct CharacterListItemView: View {
     
     //MARK:- PROPERTIES
     @State private var isTapped:Bool = false
+    
     @ObservedObject var charItem: CharacterObservableObject
+    
+    // Modify / Uncomment For preview
+//    var charItem1 = CharacterViewModel(with: CharacterMModel(id: 0, name: "Bonque", status: .alive, species: .alien, type: "", gender: .male, origin: .init(name: "", url: ""), location: .init(name: "", url: ""), image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg", episode: [], url: "", created: ""))
     
     //MARK:- BODY
     var body: some View {
@@ -39,7 +43,7 @@ struct CharacterListItemView: View {
                     .font(.title2)
                 .fontWeight(.heavy)
                 
-                Text(charItem.viewModel.type)
+                Text(charItem.viewModel.species)
                     .font(.footnote)
                     .fontWeight(.light)
             }
@@ -47,21 +51,21 @@ struct CharacterListItemView: View {
             Spacer()
                 
         }
-        .padding(24)
+        .padding(20)
         .background(
-            RoundedRectangle(cornerRadius:25).stroke(Color.gray, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
+            RoundedRectangle(cornerRadius:25).stroke(Color.gray.quaternary, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
                 .fill(
-                    isTapped ? Color.blue.secondary :  Color.pink.secondary)
-                .padding(8)
+                    isTapped ? Color.blue.quaternary :  Color.pink.quaternary)
         )
         .onTapGesture {
             isTapped.toggle()
         }
         
     }
-    
+
     init(charItem:CharacterObservableObject) {
         self.charItem = charItem
+        
     }
     
 
@@ -69,6 +73,5 @@ struct CharacterListItemView: View {
 }
 
 //#Preview {
-//    let presenter = CharList_Presenter(view: CharacterListVC(), interactor: Interactor(), router: CharacterRouter())
-//    CharacterListItemView( presenter: presenter)
+//    CharacterListItemView().padding(8)
 //}
