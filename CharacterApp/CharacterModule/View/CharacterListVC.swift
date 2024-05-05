@@ -93,8 +93,7 @@ extension CharacterListVC : UITableViewDataSource {
        
         // return swiftui + assign data
         cell.contentConfiguration = UIHostingConfiguration(content: {
-
-            CharacterListItemView(presenter: presenter,indexPath: indexPath)
+            CharacterListItemView(charItem: CharacterObservableObject(presenter: presenter, indexPath: indexPath)) //presenter: presenter,indexPath: indexPath)
         })
        
         // Now the Cell Data is Loaded through a presenter Layer Seperated From view,view Controllers

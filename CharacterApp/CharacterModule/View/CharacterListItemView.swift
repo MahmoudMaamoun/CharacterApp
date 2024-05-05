@@ -11,16 +11,12 @@ struct CharacterListItemView: View {
     
     //MARK:- PROPERTIES
     @State private var isTapped:Bool = false
-    @State var charname:String = ""
-    @State var imageURL:String = ""
-    @State var type:String = ""
+    @ObservedObject var charItem: CharacterObservableObject
     
-    let presenter:CharacterPresenterProtocol!
-    let indexPath:IndexPath!
     //MARK:- BODY
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string: imageURL), content: { image in
+            AsyncImage(url: URL(string: charItem.viewModel.image), content: { image in
                     image
                     .resizable()
                     .scaledToFill()
@@ -39,11 +35,11 @@ struct CharacterListItemView: View {
                 
             
             VStack(alignment: .leading) {
-                Text(charname)
+                Text(charItem.viewModel.name)
                     .font(.title2)
                 .fontWeight(.heavy)
                 
-                Text(type)
+                Text(charItem.viewModel.type)
                     .font(.footnote)
                     .fontWeight(.light)
             }
@@ -63,28 +59,12 @@ struct CharacterListItemView: View {
         }
         
     }
-    init( presenter: CharacterPresenterProtocol!,indexPath:IndexPath) {
-        self.presenter = presenter
-        self.indexPath = indexPath
-        self.setupCell(presenter: self.presenter, indexPath: self.indexPath)
-    }
-    //MARK: - FUNCTIONS
-  
-    // Presenter Delegate Operation Call to get data from Seperated Data Layer
-    func setupCell(presenter:CharacterPresenterProtocol,indexPath:IndexPath) {
-       let dataModel = presenter.configureCell(indexPath: indexPath)
-        charname = dataModel.name
-        imageURL = dataModel.image
-        type = dataModel.type
-      
+    
+    init(charItem:CharacterObservableObject) {
+        self.charItem = charItem
     }
     
-    // That function is getting call back with row data from configure cell presenter method we just called above
-//    func configureView(with viewModel:CharacterViewModel) {
-//        charname = viewModel.name
-//        imageURL = viewModel.image
-//        type = viewModel.type
-//    }
+
     
 }
 

@@ -6,10 +6,10 @@
 //
 
 import Foundation
-struct CharacterViewModel {
-    var name:String
-    var image:String
-    var type:String
+class CharacterViewModel {
+    @Published var name:String
+    @Published var image:String
+    @Published var type:String
     
     init(with charItem: CharacterMModel) {
         self.name = charItem.name

@@ -26,6 +26,7 @@
 		E9B7C6D92BE5D1F4008556DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B7C6D82BE5D1F4008556DA /* Constants.swift */; };
 		E9DB97922BE6B7BC0083CA78 /* CharacterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DB97912BE6B7BC0083CA78 /* CharacterRouter.swift */; };
 		E9DB97962BE6F76B0083CA78 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DB97952BE6F76B0083CA78 /* CharacterViewModel.swift */; };
+		E9DB979A2BE7D84E0083CA78 /* CharacterObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DB97992BE7D84E0083CA78 /* CharacterObservableObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		E9B7C6D82BE5D1F4008556DA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E9DB97912BE6B7BC0083CA78 /* CharacterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterRouter.swift; sourceTree = "<group>"; };
 		E9DB97952BE6F76B0083CA78 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
+		E9DB97992BE7D84E0083CA78 /* CharacterObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterObservableObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			children = (
 				E919FE9E2BE5B91B0069E86E /* CharacterListVC.swift */,
 				E919FECA2BE5B9450069E86E /* CharacterListItemView.swift */,
+				E9DB97992BE7D84E0083CA78 /* CharacterObservableObject.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				E919FE9F2BE5B91B0069E86E /* CharacterListVC.swift in Sources */,
 				E919FECB2BE5B9450069E86E /* CharacterListItemView.swift in Sources */,
 				E902C2272BE6644E000544D6 /* Interactor.swift in Sources */,
+				E9DB979A2BE7D84E0083CA78 /* CharacterObservableObject.swift in Sources */,
 				E902C2202BE65890000544D6 /* Protocols.swift in Sources */,
 				E9B7C6D72BE5CD9E008556DA /* FilterCharactersView.swift in Sources */,
 				E902C2222BE65C01000544D6 /* CharList_Presenter.swift in Sources */,
