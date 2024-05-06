@@ -65,6 +65,9 @@ class CharacterListVC: UIViewController,CharacterViewProtocol {
             self.tbView.reloadData()
         }
     }
+    func displayFilteredList(filteredList: [CharacterMModel]) {
+        reloadData()
+    }
     
 }
 
@@ -89,11 +92,12 @@ extension CharacterListVC : UITableViewDataSource {
                 fatalError("fatal error: you forgot to register filter tableviewcell")
             }
             filterCell.contentConfiguration = UIHostingConfiguration(content: {
-                FilterCharactersView()
+                FilterCharactersView(presenter: presenter)
             })
             filterCell.selectionStyle = .none
             return filterCell
         }
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier:Constants.characterCellID)  else {
             fatalError("fatal error: you forgot to register table view cell")
         }
@@ -101,7 +105,7 @@ extension CharacterListVC : UITableViewDataSource {
 
         cell.contentConfiguration = UIHostingConfiguration(content: {  CharacterListItemView(charItem: CharacterObservableObject(presenter: presenter,indexPath: indexPath))
         })
-       
+        cell.selectionStyle = .none
         // Now the Cell Data is Loaded through a presenter Layer Seperated From view,view Controllers
         return cell
     }

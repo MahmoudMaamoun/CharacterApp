@@ -60,9 +60,9 @@ struct CharacterListItemView: View {
                 .fill(
                     isTapped ? Color.blue.quaternary :  Color.pink.quaternary)
         )
-//        .onTapGesture {
-//            isTapped.toggle()
-//        }
+        .onTapGesture {
+            isTapped.toggle()
+        }
         
     }
 

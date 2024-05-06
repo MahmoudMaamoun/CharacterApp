@@ -7,8 +7,7 @@
 
 import Foundation
 class CharList_Presenter : CharacterPresenterProtocol , CharacterInteractorOutputProtocol {
-   
-    
+ 
     //MARK: - PROPERTIES
     var view: CharacterViewProtocol?
     private var interactor: CharacterInteractorInputProtocol
@@ -16,7 +15,7 @@ class CharList_Presenter : CharacterPresenterProtocol , CharacterInteractorOutpu
     private var charList: [CharacterMModel] = [CharacterMModel]()
     private var currentpage:Int = 0
     private var numOfPagee:Int = 0
-    
+
     var numOfRows: Int {
         return charList.count
     }
@@ -27,6 +26,7 @@ class CharList_Presenter : CharacterPresenterProtocol , CharacterInteractorOutpu
         self.router = router
     }
     //MARK: - PRESENTER PROTOCOL
+    
     func configureCell(indexPath: IndexPath) -> CharacterViewModel {
         let charItm = charList[indexPath.row]
         let charVM = CharacterViewModel(with: charItm)
@@ -36,12 +36,21 @@ class CharList_Presenter : CharacterPresenterProtocol , CharacterInteractorOutpu
         view?.showLoading()
         interactor.getCharacterList()
     }
+    
     func loadNextPage() {
         if currentpage < numOfPagee {
             interactor.getNextPage(page: currentpage + 1)
         }
     }
     
+    func filterList(by status:Status?) {
+        interactor.filterCharacterList(status)
+    }
+    func presentFilteredList(filterdList: [CharacterMModel]) {
+        self.charList = filterdList
+        view?.displayFilteredList(filteredList: filterdList)
+        view?.reloadData()
+    }
    //MARK: - CHARACTERINTERACTOROUTPUTPROTOCOL
     func charListFetchedSuccessfully(charsList:[CharacterMModel], pages:Int) {
         numOfPagee = pages
@@ -57,4 +66,7 @@ class CharList_Presenter : CharacterPresenterProtocol , CharacterInteractorOutpu
         view?.hideLoading()
         // SHOW ERROR
     }
+    
+   
+    
 }

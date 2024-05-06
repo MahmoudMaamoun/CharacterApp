@@ -148,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				E919FE9E2BE5B91B0069E86E /* CharacterListVC.swift */,
+				E9B7C6D62BE5CD9E008556DA /* FilterCharactersView.swift */,
 				E919FECA2BE5B9450069E86E /* CharacterListItemView.swift */,
 				E9DB97992BE7D84E0083CA78 /* CharacterObservableObject.swift */,
 			);
@@ -210,7 +211,6 @@
 				E919FEA32BE5B91D0069E86E /* Assets.xcassets */,
 				E919FEA52BE5B91D0069E86E /* LaunchScreen.storyboard */,
 				E919FEA82BE5B91D0069E86E /* Info.plist */,
-				E9B7C6D62BE5CD9E008556DA /* FilterCharactersView.swift */,
 			);
 			path = CharacterApp;
 			sourceTree = "<group>";

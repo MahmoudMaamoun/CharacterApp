@@ -38,3 +38,9 @@ struct Location: Codable {
     let name: String
     let url: String
 }
+//MARK: - STATUS
+enum Status {
+    case alive
+    case dead
+    case unknown
+}
