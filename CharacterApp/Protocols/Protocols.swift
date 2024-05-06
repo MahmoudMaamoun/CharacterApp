@@ -11,7 +11,9 @@ import Foundation
 protocol CharacterPresenterProtocol {
     var view:CharacterViewProtocol? {get set}
     var numOfRows:Int {get}
+//    var pageNumber:Int{get}
     func ViewLoaded()
+    func loadNextPage()
     func configureCell(indexPath:IndexPath) -> CharacterViewModel
 }
 
@@ -26,13 +28,14 @@ protocol CharacterViewProtocol {
 //MARK: - CHARACTER MODULE INTERACTOR INPUT PROTOCOL
 protocol CharacterInteractorInputProtocol {
     func getCharacterList()
+    func getNextPage(page:Int)
     func filterCharacterList()
     
 }
 
 //MARK: - CHARACTER MODULE INTERACTOR OUTPUT PROTOCOL
 protocol CharacterInteractorOutputProtocol {
-    func charListFetchedSuccessfully(charsList:[CharacterMModel])
+    func charListFetchedSuccessfully(charsList:[CharacterMModel], pages:Int)
     func FailedToFetch(with err:Error)
 }
 //MARK: - CHARACTER MODULE ROUTER PROTOCOL

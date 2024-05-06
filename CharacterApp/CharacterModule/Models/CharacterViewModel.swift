@@ -14,6 +14,6 @@ class CharacterViewModel {
     init(with charItem: CharacterMModel) {
         self.name = charItem.name
         self.image = charItem.image
-        self.species = charItem.species.rawValue
+        self.species = charItem.species
     }
 }

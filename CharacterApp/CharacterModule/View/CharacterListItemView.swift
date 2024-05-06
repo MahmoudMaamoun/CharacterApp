@@ -30,10 +30,13 @@ struct CharacterListItemView: View {
                     )
                 
             }, placeholder: {
-                Image(systemName: "photo.artframe")
+                Image("lion-2")
                     .resizable()
                     .scaledToFill()
                     .frame(width: 80,height: 80)
+                    .clipShape (
+                        RoundedRectangle(cornerRadius: 20)
+                    )
                 
             })
                 
@@ -57,9 +60,9 @@ struct CharacterListItemView: View {
                 .fill(
                     isTapped ? Color.blue.quaternary :  Color.pink.quaternary)
         )
-        .onTapGesture {
-            isTapped.toggle()
-        }
+//        .onTapGesture {
+//            isTapped.toggle()
+//        }
         
     }
 

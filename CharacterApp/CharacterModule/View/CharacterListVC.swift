@@ -71,29 +71,35 @@ class CharacterListVC: UIViewController,CharacterViewProtocol {
 
 extension CharacterListVC : UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.numOfRows + 1
+        
+        if section == 0 {
+            return 1
+        }
+        return presenter.numOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        
+        if indexPath.section == 0 {
             guard let filterCell = tableView.dequeueReusableCell(withIdentifier: Constants.filterCharListID) else {
                 fatalError("fatal error: you forgot to register filter tableviewcell")
             }
-            
             filterCell.contentConfiguration = UIHostingConfiguration(content: {
                 FilterCharactersView()
             })
             filterCell.selectionStyle = .none
-                    return filterCell
+            return filterCell
         }
         guard let cell = tableView.dequeueReusableCell(withIdentifier:Constants.characterCellID)  else {
             fatalError("fatal error: you forgot to register table view cell")
         }
        
-        // return swiftui + assign data
-        cell.contentConfiguration = UIHostingConfiguration(content: {
-            CharacterListItemView(charItem: CharacterObservableObject(presenter: presenter, indexPath: indexPath)) //presenter: presenter,indexPath: indexPath)
+
+        cell.contentConfiguration = UIHostingConfiguration(content: {  CharacterListItemView(charItem: CharacterObservableObject(presenter: presenter,indexPath: indexPath))
         })
        
         // Now the Cell Data is Loaded through a presenter Layer Seperated From view,view Controllers
@@ -106,9 +112,17 @@ extension CharacterListVC : UITableViewDataSource {
 extension CharacterListVC : UITableViewDelegate {
   
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             return 60
         }
         return 136
+    }
+    
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // check if last cell so trigger pagination event and presenter start load next page
+        if  presenter.numOfRows == (indexPath.row + 1) {
+            presenter.loadNextPage()
+        }
     }
 }

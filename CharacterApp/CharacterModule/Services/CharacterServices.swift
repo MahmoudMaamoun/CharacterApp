@@ -13,8 +13,10 @@ class CharacterServices {
     let networkLayer = NetworkLayer()
     
     //MARK: - FUNCTIONS
-    func getChars(completionHandler:@escaping(ResultModel? , Error?)-> ()) {
-        networkLayer.get(url: URL(string: Constants.CharsListURL)!, responseType: ResultModel.self) { result in
+    func getChars(_ page:Int = 0,completionHandler:@escaping(ResultModel? , Error?)-> ()) {
+        let url = page > 0 ? "\(Constants.CharsListURL)?page=\(page)": Constants.CharsListURL
+        
+        networkLayer.get(url: URL(string:url)!, responseType: ResultModel.self) { result in
             switch result {
             case .success(let charsItems):
                 print("Chars Fetched successfully")
@@ -25,4 +27,6 @@ class CharacterServices {
             }
         }
     }
+    
+    
 }
