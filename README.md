@@ -56,4 +56,11 @@ Solution:
 - created an Observable Object with a publishd viewModel Data Property
 - get the data into that observable object through a presenter configureCell function
 - dynamically the swiftui cell view get notified with the Published viewModel property
+  
+## Double Quick Faster
+ viper is very fast architcture because it's cool mechanism while no matter Interactor is loaded before view or after
+
+<img src="https://github.com/MahmoudMaamoun/CharacterApp/assets/4027697/339cc549-e989-4b3f-affb-11591885a62b" width=320 />
+<img src="https://github.com/MahmoudMaamoun/CharacterApp/assets/4027697/d22f9f49-fffc-4d64-9f5c-d6388b9b8475" width=320 />
+<img src="https://github.com/MahmoudMaamoun/CharacterApp/assets/4027697/9e29659e-5063-43ce-a655-dc632f87dbda" width=320 />
 
