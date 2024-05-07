@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 class CharacterListVC: UIViewController,CharacterViewProtocol {
-
+   
     // MARK:- PROPERTIES
     var presenter:CharacterPresenterProtocol!
     var viewActivityInd: UIActivityIndicatorView!
@@ -68,6 +68,9 @@ class CharacterListVC: UIViewController,CharacterViewProtocol {
     func displayFilteredList(filteredList: [CharacterMModel]) {
         reloadData()
     }
+    func displayItemDetails(item: CharacterViewModel) {
+        
+    }
     
 }
 
@@ -94,14 +97,13 @@ extension CharacterListVC : UITableViewDataSource {
             filterCell.contentConfiguration = UIHostingConfiguration(content: {
                 FilterCharactersView(presenter: presenter)
             })
-            filterCell.selectionStyle = .none
+//            filterCell.selectionStyle = .none
             return filterCell
         }
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier:Constants.characterCellID)  else {
             fatalError("fatal error: you forgot to register table view cell")
         }
-       
 
         cell.contentConfiguration = UIHostingConfiguration(content: {  CharacterListItemView(charItem: CharacterObservableObject(presenter: presenter,indexPath: indexPath))
         })
@@ -128,5 +130,9 @@ extension CharacterListVC : UITableViewDelegate {
         if  presenter.numOfRows == (indexPath.row + 1) {
             presenter.loadNextPage()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.openItemDetailsView(item: indexPath)
     }
 }

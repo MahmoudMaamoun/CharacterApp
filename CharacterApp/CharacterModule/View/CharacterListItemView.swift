@@ -10,7 +10,7 @@ import SwiftUI
 struct CharacterListItemView: View {
     
     //MARK:- PROPERTIES
-    @State private var isTapped:Bool = false
+//    @State private var isTapped:Bool = false
     
     @ObservedObject var charItem: CharacterObservableObject
     
@@ -57,12 +57,12 @@ struct CharacterListItemView: View {
         .padding(20)
         .background(
             RoundedRectangle(cornerRadius:25).stroke(Color.gray.quaternary, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
-                .fill(
-                    isTapped ? Color.blue.quaternary :  Color.pink.quaternary)
+               // .fill(
+                 //   isTapped ? Color.blue.quaternary :  Color.pink.quaternary)
         )
-        .onTapGesture {
-            isTapped.toggle()
-        }
+//        .onTapGesture {
+//            isTapped.toggle()
+//        }
         
     }
 

@@ -7,9 +7,12 @@
 
 import Foundation
 class CharList_Presenter : CharacterPresenterProtocol , CharacterInteractorOutputProtocol {
- 
+   
+    
+   
     //MARK: - PROPERTIES
     var view: CharacterViewProtocol?
+    var detailsView: DetailsScreenViewProtocol?
     private var interactor: CharacterInteractorInputProtocol
     private var router: RouterProtocol
     private var charList: [CharacterMModel] = [CharacterMModel]()
@@ -51,6 +54,17 @@ class CharList_Presenter : CharacterPresenterProtocol , CharacterInteractorOutpu
         view?.displayFilteredList(filteredList: filterdList)
         view?.reloadData()
     }
+    
+    func openItemDetailsView(item: IndexPath) {
+        interactor.fetchItemDetails(item: item.row)
+    }
+    
+    func presentItemDetails(item: CharacterViewModel) {
+        router.navigateToItemDetails(item: item)
+//        detailsView?.displayItemDetails(item: item)
+        
+    }
+    
    //MARK: - CHARACTERINTERACTOROUTPUTPROTOCOL
     func charListFetchedSuccessfully(charsList:[CharacterMModel], pages:Int) {
         numOfPagee = pages
@@ -67,6 +81,6 @@ class CharList_Presenter : CharacterPresenterProtocol , CharacterInteractorOutpu
         // SHOW ERROR
     }
     
-   
+    
     
 }

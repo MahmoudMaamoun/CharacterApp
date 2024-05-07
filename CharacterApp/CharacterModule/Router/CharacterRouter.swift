@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import SwiftUI
 class CharacterRouter : RouterProtocol {
+    
+    
     //MARK: - PROPERTIES
     var viewController:CharacterListVC?
     
+    //MMARK: - ROUTER FUNCTIONS
     static func createModule() -> UIViewController {
         
        let charListVC = CharacterListVC()
@@ -23,5 +27,14 @@ class CharacterRouter : RouterProtocol {
         router.viewController = charListVC
         
         return charListVC
+    }
+    
+    func navigateToItemDetails(item:CharacterViewModel) {
+        let detailsVC = UIHostingController(rootView: CharacterDetailsView(item:item,backAction: {
+            self.viewController?.navigationController?.popViewController(animated: true)
+            self.viewController?.navigationController?.isNavigationBarHidden = false
+        }))
+        self.viewController?.navigationController?.isNavigationBarHidden = true
+        self.viewController?.navigationController?.pushViewController(detailsVC, animated: true)
     }
 }

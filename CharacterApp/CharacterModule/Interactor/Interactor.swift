@@ -62,5 +62,11 @@ class Interactor : CharacterInteractorInputProtocol {
         presenter?.presentFilteredList(filterdList:filteredList)
     }
     
+    func fetchItemDetails(item: Int) {
+        let itmDetails = self.originalCharList[item]
+        presenter?.presentItemDetails(item: CharacterViewModel(with: itmDetails))
+    }
+    
+    
     
 }
