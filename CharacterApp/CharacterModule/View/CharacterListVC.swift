@@ -15,19 +15,24 @@ class CharacterListVC: UIViewController,CharacterViewProtocol {
     
     var tbView: UITableView!
    
+    // For Testing Purpose
+    var didNavigateToItemDetails:Bool = false
     //MARK:- FUNCTIONS
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        setuptbView()
+        setupView()
     }
     
-    func setuptbView() {
+    func setupView() {
         self.title = "Characters"
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.accessibilityIdentifier = "CharactersNavigationBar"
+
         tbView = UITableView(frame: view.bounds, style: .plain)
         tbView.delegate = self
         tbView.dataSource = self
+        tbView.accessibilityIdentifier = "charsList"
         tbView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.characterCellID)
         tbView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.filterCharListID)
         tbView.separatorStyle = .none
@@ -56,13 +61,13 @@ class CharacterListVC: UIViewController,CharacterViewProtocol {
     
     func hideLoading() {
         DispatchQueue.main.async {
-            self.viewActivityInd.removeFromSuperview()
+            self.viewActivityInd?.removeFromSuperview()
         }
     }
     
     func reloadData() {
         DispatchQueue.main.async {
-            self.tbView.reloadData()
+            self.tbView?.reloadData()
         }
     }
     func displayFilteredList(filteredList: [CharacterMModel]) {
@@ -133,6 +138,6 @@ extension CharacterListVC : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.openItemDetailsView(item: indexPath)
+        presenter.openItemDetailsView(item: indexPath.row)
     }
 }

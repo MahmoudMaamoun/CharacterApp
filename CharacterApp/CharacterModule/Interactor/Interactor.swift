@@ -66,7 +66,7 @@ class Interactor : CharacterInteractorInputProtocol {
     }
     
     func fetchItemDetails(item: Int,isFiltering: Bool) {
-        
+       
         var itmDetails = self.originalCharList[item]
         if isFiltering {
             itmDetails = filteredCharList[item]
@@ -75,5 +75,15 @@ class Interactor : CharacterInteractorInputProtocol {
     }
     
     
+    //MARK: - STATIC METHODS FOR TESTING
+    func LoadDummyData(){
+        let chars = [CharacterMModel(id: 0, name: "Bonque", status: "Alive", species: "", type: "", gender: "", origin: .init(name: "", url: ""), location:.init(name: "", url: ""), image: "", episode: [""], url: "", created: ""),CharacterMModel(id: 0, name: "Bonque", status: "unknown", species: "", type: "", gender: "", origin: .init(name: "", url: ""), location:.init(name: "", url: ""), image: "", episode: [""], url: "", created: ""),CharacterMModel(id: 0, name: "Bonque", status: "Alive", species: "", type: "", gender: "", origin: .init(name: "", url: ""), location:.init(name: "", url: ""), image: "", episode: [""], url: "", created: ""),CharacterMModel(id: 0, name: "Bonque", status: "Dead", species: "", type: "", gender: "", origin: .init(name: "", url: ""), location:.init(name: "", url: ""), image: "", episode: [""], url: "", created: ""),CharacterMModel(id: 0, name: "Bonque", status: "Alive", species: "", type: "", gender: "", origin: .init(name: "", url: ""), location:.init(name: "", url: ""), image: "", episode: [""], url: "", created: ""),CharacterMModel(id: 0, name: "Bonque", status: "Alive", species: "", type: "", gender: "", origin: .init(name: "", url: ""), location:.init(name: "", url: ""), image: "", episode: [""], url: "", created: ""),CharacterMModel(id: 0, name: "Bonque", status: "Alive", species: "", type: "", gender: "", origin: .init(name: "", url: ""), location:.init(name: "", url: ""), image: "", episode: [""], url: "", created: ""),]
+        
+        self.originalCharList = chars
+    }
+    
+    func getFilteredList() -> [CharacterMModel] {
+        return self.filteredCharList
+    }
     
 }

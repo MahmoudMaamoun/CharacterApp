@@ -26,7 +26,13 @@ struct CharacterDetailsView: View, DetailsScreenViewProtocol {
                             RoundedRectangle(cornerRadius: 25)
                         ).ignoresSafeArea()
                 } placeholder: {
-                    
+                    Image(systemName: "photo")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: UIScreen.main.bounds.width,height: 400)
+                        .clipShape (
+                            RoundedRectangle(cornerRadius: 20)
+                        )
                 }
                 
                 HStack {

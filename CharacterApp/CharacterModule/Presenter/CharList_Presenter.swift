@@ -15,15 +15,15 @@ class CharList_Presenter : CharacterPresenterProtocol , CharacterInteractorOutpu
     var detailsView: DetailsScreenViewProtocol?
     private var interactor: CharacterInteractorInputProtocol
     private var router: RouterProtocol
-    private var charList: [CharacterMModel] = [CharacterMModel]()
+    var charList: [CharacterMModel] = [CharacterMModel]()
     private var currentpage:Int = 0
-    private var numOfPagee:Int = 0
+     var numOfPages:Int = 0
     var isFilterEnabled = false
     var numOfRows: Int {
         return charList.count
     }
     
-    init(view: CharacterViewProtocol?, interactor: CharacterInteractorInputProtocol, router: RouterProtocol) {
+    init( view: CharacterViewProtocol?, interactor: CharacterInteractorInputProtocol, router: RouterProtocol) {
         self.view = view
         self.interactor = interactor
         self.router = router
@@ -41,7 +41,7 @@ class CharList_Presenter : CharacterPresenterProtocol , CharacterInteractorOutpu
     }
     
     func loadNextPage() {
-        if currentpage < numOfPagee {
+        if currentpage < numOfPages {
             interactor.getNextPage(page: currentpage + 1)
         }
     }
@@ -56,21 +56,22 @@ class CharList_Presenter : CharacterPresenterProtocol , CharacterInteractorOutpu
         view?.reloadData()
     }
     
-    func openItemDetailsView(item: IndexPath) {
-        interactor.fetchItemDetails(item: item.row,isFiltering:isFilterEnabled)
+    func openItemDetailsView(item: Int) {
+        interactor.fetchItemDetails(item: item,isFiltering:isFilterEnabled)
     }
     
     func presentItemDetails(item: CharacterViewModel) {
         router.navigateToItemDetails(item: item)
+        
 //        detailsView?.displayItemDetails(item: item)
         
     }
     
    //MARK: - CHARACTERINTERACTOROUTPUTPROTOCOL
     func charListFetchedSuccessfully(charsList:[CharacterMModel], pages:Int) {
-        numOfPagee = pages
+        numOfPages = pages
         if pages > currentpage {
-            charList.append(contentsOf: charsList)
+            self.charList = charsList
             currentpage += 1
         }
         view?.hideLoading()

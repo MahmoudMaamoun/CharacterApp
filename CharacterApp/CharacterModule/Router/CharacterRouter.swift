@@ -36,5 +36,7 @@ class CharacterRouter : RouterProtocol {
         }))
         self.viewController?.navigationController?.isNavigationBarHidden = true
         self.viewController?.navigationController?.pushViewController(detailsVC, animated: true)
+        
+        self.viewController?.didNavigateToItemDetails = true
     }
 }

@@ -19,7 +19,7 @@ protocol CharacterPresenterProtocol {
     func presentFilteredList(filterdList:[CharacterMModel]) // present filtered list
     
     // Details Screen Layer
-    func openItemDetailsView(item:IndexPath)
+    func openItemDetailsView(item:Int)
     func presentItemDetails(item:CharacterViewModel)
 }
 

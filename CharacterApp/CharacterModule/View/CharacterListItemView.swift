@@ -10,13 +10,11 @@ import SwiftUI
 struct CharacterListItemView: View {
     
     //MARK:- PROPERTIES
-//    @State private var isTapped:Bool = false
+    @State private var isTapped:Bool = false
     
     @ObservedObject var charItem: CharacterObservableObject
     
-    // Modify / Uncomment For preview
-//    var charItem1 = CharacterViewModel(with: CharacterMModel(id: 0, name: "Bonque", status: .alive, species: .alien, type: "", gender: .male, origin: .init(name: "", url: ""), location: .init(name: "", url: ""), image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg", episode: [], url: "", created: ""))
-    
+   
     //MARK:- BODY
     var body: some View {
         HStack {
@@ -30,7 +28,7 @@ struct CharacterListItemView: View {
                     )
                 
             }, placeholder: {
-                Image("lion-2")
+                Image(systemName: "photo")
                     .resizable()
                     .scaledToFill()
                     .frame(width: 80,height: 80)
@@ -57,8 +55,8 @@ struct CharacterListItemView: View {
         .padding(20)
         .background(
             RoundedRectangle(cornerRadius:25).stroke(Color.gray.quaternary, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
-               // .fill(
-                 //   isTapped ? Color.blue.quaternary :  Color.pink.quaternary)
+                .fill(
+                    isTapped ? Color.blue.opacity(0.2) :  Color.pink.opacity(0.2))
         )
 //        .onTapGesture {
 //            isTapped.toggle()
@@ -66,10 +64,10 @@ struct CharacterListItemView: View {
         
     }
 
-    init(charItem:CharacterObservableObject) {
-        self.charItem = charItem
-        
-    }
+//    init(charItem:CharacterObservableObject) {
+//        self.charItem = charItem
+//        
+//    }
     
 
     
