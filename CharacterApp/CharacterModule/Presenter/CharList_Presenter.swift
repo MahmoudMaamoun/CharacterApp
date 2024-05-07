@@ -18,7 +18,7 @@ class CharList_Presenter : CharacterPresenterProtocol , CharacterInteractorOutpu
     private var charList: [CharacterMModel] = [CharacterMModel]()
     private var currentpage:Int = 0
     private var numOfPagee:Int = 0
-
+    var isFilterEnabled = false
     var numOfRows: Int {
         return charList.count
     }
@@ -47,6 +47,7 @@ class CharList_Presenter : CharacterPresenterProtocol , CharacterInteractorOutpu
     }
     
     func filterList(by status:Status?) {
+        isFilterEnabled = status != nil
         interactor.filterCharacterList(status)
     }
     func presentFilteredList(filterdList: [CharacterMModel]) {
@@ -56,7 +57,7 @@ class CharList_Presenter : CharacterPresenterProtocol , CharacterInteractorOutpu
     }
     
     func openItemDetailsView(item: IndexPath) {
-        interactor.fetchItemDetails(item: item.row)
+        interactor.fetchItemDetails(item: item.row,isFiltering:isFilterEnabled)
     }
     
     func presentItemDetails(item: CharacterViewModel) {

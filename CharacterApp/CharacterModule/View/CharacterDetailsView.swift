@@ -17,13 +17,17 @@ struct CharacterDetailsView: View, DetailsScreenViewProtocol {
     
         VStack {
             ZStack {
-                Image("lion-2")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: UIScreen.main.bounds.width,height: 400)
-                    .clipShape(
-                        RoundedRectangle(cornerRadius: 25)
-                    ).ignoresSafeArea()
+                AsyncImage(url: URL(string: item.image)) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: UIScreen.main.bounds.width,height: 400)
+                        .clipShape(
+                            RoundedRectangle(cornerRadius: 25)
+                        ).ignoresSafeArea()
+                } placeholder: {
+                    
+                }
                 
                 HStack {
                     Button(action: {
@@ -49,13 +53,13 @@ struct CharacterDetailsView: View, DetailsScreenViewProtocol {
                         .fontWeight(.heavy)
                         .font(.title2)
                     HStack {
-                        Text("status")
+                        Text(item.species)
                             .font(.title3)
                             .foregroundStyle(.black.opacity(0.8))
                         Circle()
                             .fill(.gray)
                             .frame(width: 6)
-                        Text("Male")
+                        Text(item.gender)
                             .font(.title3)
                             .foregroundStyle(.black.opacity(0.5))
                         
@@ -64,7 +68,7 @@ struct CharacterDetailsView: View, DetailsScreenViewProtocol {
                 }
                 Spacer()
                 VStack {
-                    Text("Status")
+                    Text(item.status)
                         .font(.footnote)
                         .fontWeight(.regular)
                         .padding(8)
@@ -78,7 +82,7 @@ struct CharacterDetailsView: View, DetailsScreenViewProtocol {
                 Text("Location :")
                     .font(.title3)
                     .foregroundStyle(.black.opacity(0.8))
-                Text("Earth")
+                Text(item.location)
                     .font(.title3)
                     .foregroundStyle(.black.opacity(0.5))
                 Spacer()

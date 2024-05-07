@@ -43,7 +43,7 @@ protocol CharacterInteractorInputProtocol {
     func filterCharacterList(_ status:Status?) // filter logic
     
     // Details Screen Layer
-    func fetchItemDetails(item:Int)
+    func fetchItemDetails(item:Int,isFiltering:Bool)
     
 }
 

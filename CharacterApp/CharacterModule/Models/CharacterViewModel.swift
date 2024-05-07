@@ -12,10 +12,16 @@ class CharacterViewModel {
     @Published var image:String
     @Published var species:String
     
+    @Published var gender:String
+    @Published var status:String
+    @Published var location:String
     
     init(with charItem: CharacterMModel) {
         self.name = charItem.name
         self.image = charItem.image
         self.species = charItem.species
+        self.gender = charItem.gender
+        self.status = charItem.status
+        self.location = charItem.location.name
     }
 }

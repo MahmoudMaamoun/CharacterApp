@@ -12,6 +12,7 @@ class Interactor : CharacterInteractorInputProtocol {
     var presenter:CharList_Presenter?
     let services:CharacterServices = CharacterServices()
     private var originalCharList: [CharacterMModel] = [CharacterMModel]()
+    private var filteredCharList: [CharacterMModel] = [CharacterMModel]()
 
     //MARK: - FUNCTION
     
@@ -58,12 +59,18 @@ class Interactor : CharacterInteractorInputProtocol {
                 characterItem.status == "unknown"
             }
         }
+        
+        self.filteredCharList = filteredList
         print("filter by \(status) in \(originalCharList.count) Item . Result: \(filteredList.count) Item founded")
         presenter?.presentFilteredList(filterdList:filteredList)
     }
     
-    func fetchItemDetails(item: Int) {
-        let itmDetails = self.originalCharList[item]
+    func fetchItemDetails(item: Int,isFiltering: Bool) {
+        
+        var itmDetails = self.originalCharList[item]
+        if isFiltering {
+            itmDetails = filteredCharList[item]
+        }
         presenter?.presentItemDetails(item: CharacterViewModel(with: itmDetails))
     }
     
